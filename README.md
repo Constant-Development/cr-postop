@@ -6,6 +6,23 @@
 [Constant Development Tebex](https://constant-development.tebex.io/)
 [Constant RolePlay Discord](https://discord.gg/constantroleplay)
 
+Within this Resource, you will have a Job System based on the PostOP MLO.
+ Being said, understand that this Job will be intricated over-time and is
+planned to contain 0 Direct Depedencies other than the MLO itself. With that,
+expect the Resource to contain multiple different Configurable Options within
+Config.Framework. 
+
+To further add onto that, this Resource currently contains the following:
+ - Intricated Management Menu System
+  - Contains Toggle Duty Factors
+  - Contains Boss/Management Menu Factors
+ - Hidden Room Box Movement Factor
+ - Intricated Forgery Table
+ - Intricated Money Table
+ - 'Basic' Stash System
+ - PostOP MLO Doorlocks
+ - External Sounds and Images
+
 ## Dependencies:
 
 ### MLO:
@@ -116,9 +133,9 @@
 	},
 ```
 
-### nui_doorlock
-* Implement the 'Doorlock' File into nui_doorlock/configs
-* Make sure that you have metal-locker.ogg and metallic-creak.ogg inside of nui_doorlock/html/sounds
+### Doorlocks Factor
+* Implement the 'Doorlock' File into (nui/qb)_doorlock/configs
+* Make sure that you have metal-locker.ogg and metallic-creak.ogg inside of (nui/qb)_doorlock/html/sounds
 
 ## Optional Installations"
 
