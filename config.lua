@@ -7,10 +7,10 @@ Config.Framework = {
     -- 'mythic' = mythic_notify
     -- 'tnj' = tnj-notify
     -- 'chat' = Chat Message
-    Doorlocks = 'nui',
+    Doorlocks = 'qb',
     -- 'qb' = qb_doorlock
     -- 'nui' = nui_doorlock
-    Clothing = 'fivem-appearance',
+    Clothing = 'qb',
     -- 'qb' = qb-clothing
     -- 'fivem-appearance' = fivem-appearance
     Logs = false, -- Currrently setup via QBCore Logs | Currently not used
@@ -19,14 +19,14 @@ Config.Framework = {
     Debug = false,
     -- true = Poly's & Prints Enabled
     -- false = Poly's & Prints Disabled
-    ForgerySystem = true,
+    ForgerySystem = false,
     -- true = Forgery System Enabled | https://constant-development.tebex.io/package/5066459
     -- false = Forgery System Disabled | https://constant-development.tebex.io/package/5066459
 }
 
 Config.PostOP = {
     System = {
-        SystemName = "Burgershot System",
+        SystemName = "PostOP System",
         JobName = "postop", -- JobName must be entered | If no Job set to nil(Not Tested)
         GradeLevelRequirement = 2, -- Level Job Ranking Required to 'Access' Closed Shop
         GradeLevelRequirementHiddenFactors = 3, -- Level Job Ranking Required to 'Access'
@@ -52,48 +52,6 @@ Config.PostOP = {
                 minZ = 30.45, -- Minimum Target's 'Z'
                 maxZ = 32.25, -- Maximum Target's 'Z'
             },
-        },
-        Stashes = {
-            ManagementRoom = { -- Management Room
-                Coords = vector3(-299.75, -1296.68, 31.25), -- Target's Coorindates
-                Length = 3, -- Target's Length
-                Width = 1, -- Target's Width
-                Heading = 270, -- Target's Heading
-                minZ = 30.25, -- Minimum Target's 'Z'
-                maxZ = 32.85, -- Maximum Target's 'Z'
-            },
-            HiddenSafe = { -- Hidden Safe in Weapon Room
-                Coords = vector3(-322.18, -1298.76, 31.26), -- Target's Coorindates
-                Length = 1, -- Target's Length
-                Width = 1, -- Target's Width
-                Heading = 0, -- Target's Heading
-                minZ = 30.26, -- Minimum Target's 'Z'
-                maxZ = 32.06, -- Maximum Target's 'Z'
-            },
-            WeaponCrate = { -- Small Weapon Crate in Weapon Room
-                Coords = vector3(-315.42, -1299.98, 31.26), -- Target's Coorindates
-                Length = 1.8, -- Target's Length
-                Width = 1, -- Target's Width
-                Heading = 0, -- Target's Heading
-                minZ = 30.26, -- Minimum Target's 'Z'
-                maxZ = 31.26, -- Maximum Target's 'Z'
-            },
-            WeaponCrates = { -- Weapon Crates Set in Weapon Room
-                Coords = vector3(-318.73, -1302.28, 31.26), -- Target's Coorindates
-                Length = 2.2, -- Target's Length
-                Width = 1.8, -- Target's Width
-                Heading = 0, -- Target's Heading
-                minZ = 30.26, -- Minimum Target's 'Z'
-                maxZ = 32.46, -- Maximum Target's 'Z'
-            },
-            MeetingCloset = { -- Hidden Meeting Room Closet
-                Coords = vector3(-307.36, -1308.93, 31.26), -- Target's Coorindates
-                Length = 5, -- Target's Length
-                Width = 1, -- Target's Width
-                Heading = 270, -- Target's Heading
-                minZ = 29.66, -- Minimum Target's 'Z'
-                maxZ = 32.46, -- Maximum Target's 'Z'
-            }
         },
         HiddenBox = { -- Box that is Moved
             Coords = vector3(-312.52, -1293.3, 31.24), -- Target's Coorindates
@@ -145,84 +103,6 @@ Config.PostOP = {
                 maxZ = 33.66, -- Maximum Target's 'Z'
             },
         },
-        HiddenStorage = {
-            MediumStorages = {
-                One = {
-                    Coords = vector3(-317.41, -1315.98, 31.26), -- Target's Coorindates
-                    Length = 1.9, -- Target's Length
-                    Width = 1.8, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 31.06, -- Maximum Target's 'Z'
-                },
-                Two = {
-                    Coords = vector3(-317.44, -1313.9, 31.26), -- Target's Coorindates
-                    Length = 2.2, -- Target's Length
-                    Width = 2, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 31.86, -- Maximum Target's 'Z'
-                },
-                Three = {
-                    Coords = vector3(-317.28, -1317.34, 31.26), -- Target's Coorindates
-                    Length = 0.9, -- Target's Length
-                    Width = 2, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 32.66, -- Maximum Target's 'Z'
-                },
-                Four = {
-                    Coords = vector3(-320.55, -1319.4, 31.26), -- Target's Coorindates
-                    Length = 2, -- Target's Length
-                    Width = 1.3, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 32.06, -- Maximum Target's 'Z'
-                }
-            },
-            LargeStorages = {
-                One = {
-                    Coords = vector3(-317.56, -1318.73, 31.26), -- Target's Coorindates
-                    Length = 1.8, -- Target's Length
-                    Width = 1.8, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 33.06, -- Maximum Target's 'Z'
-                },
-                Two = {
-                    Coords = vector3(-322.23, -1318.89, 31.26), -- Target's Coorindates
-                    Length = 2, -- Target's Length
-                    Width = 2, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 32.46, -- Maximum Target's 'Z'
-                },
-                Three = {
-                    Coords = vector3(-322.41, -1312.23, 31.26), -- Target's Coorindates
-                    Length = 2, -- Target's Length
-                    Width = 2, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 33.06, -- Maximum Target's 'Z'
-                },
-                Four = {
-                    Coords = vector3(-322.5, -1310.09, 31.26), -- Target's Coorindates
-                    Length = 2, -- Target's Length
-                    Width = 2, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 33.06, -- Maximum Target's 'Z'
-                },
-                Five = {
-                    Coords = vector3(-317.29, -1310.23, 31.26), -- Target's Coorindates
-                    Length = 2, -- Target's Length
-                    Width = 2, -- Target's Width
-                    Heading = 0, -- Target's Heading
-                    minZ = 30.26, -- Minimum Target's 'Z'
-                    maxZ = 32.86, -- Maximum Target's 'Z'
-                }
-            }
-        }
     },
     Blip = { -- https://docs.fivem.net/docs/game-references/blips/
         Enabled = true,
@@ -265,19 +145,144 @@ Config.PostOP = {
     },
 }
 
-Config.Stashes = { -- 'Stash Size' = Amount of Slots | 'Stash Weight' = Stash's Weight Amount | Within 'Stash Weight' 10000000 would be 1000.00 Pounds
-    MiniStash = {
-        StashName = 'MiniStash',
+Config.StashSpots = {
+    ['MiniStorageOne'] = { -- Hidden Safe Stash
+        Coords = vector3(-322.18, -1298.76, 31.26), -- Target's Coorindates
+        Length = 1, -- Target's Length
+        Width = 1, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 32.06, -- Maximum Target's 'Z'
         StashWeight = 5000000,
         StashSize = 50
     },
-    MediumStash = {
-        StashName = 'MediumStash',
+    ['MiniStorageTwo'] = { -- Weapon-Crate Stash inside of HiddenRoom(Not Stacks of Crates)
+        Coords = vector3(-315.42, -1299.98, 31.26), -- Target's Coorindates
+        Length = 1.8, -- Target's Length
+        Width = 1, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 31.26, -- Maximum Target's 'Z'
+        StashWeight = 5000000,
+        StashSize = 50
+    },
+    ['MediumStorageOne'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-317.41, -1315.98, 31.26), -- Target's Coorindates
+        Length = 1.9, -- Target's Length
+        Width = 1.8, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 31.06, -- Maximum Target's 'Z'
         StashWeight = 10000000,
         StashSize = 100
     },
-    LargeStash = {
-        StashName = 'LargeStash',
+    ['MediumStorageTwo'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-317.44, -1313.9, 31.26), -- Target's Coorindates
+        Length = 2.2, -- Target's Length
+        Width = 2, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 31.86, -- Maximum Target's 'Z'
+        StashWeight = 10000000,
+        StashSize = 100
+    },
+    ['MediumStorageThree'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-317.28, -1317.34, 31.26), -- Target's Coorindates
+        Length = 0.9, -- Target's Length
+        Width = 2, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 32.66, -- Maximum Target's 'Z'
+        StashWeight = 10000000,
+        StashSize = 100
+    },
+    ['MediumStorageFour'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-320.55, -1319.4, 31.26), -- Target's Coorindates
+        Length = 2, -- Target's Length
+        Width = 1.3, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 32.06, -- Maximum Target's 'Z'
+        StashWeight = 10000000,
+        StashSize = 100
+    },
+    ['MediumStorageFive'] = { -- Meeting Room Stash | Hidden Room
+        Coords = vector3(-307.36, -1308.93, 31.26), -- Target's Coorindates
+        Length = 5, -- Target's Length
+        Width = 1, -- Target's Width
+        Heading = 270, -- Target's Heading
+        minZ = 29.66, -- Minimum Target's 'Z'
+        maxZ = 32.46, -- Maximum Target's 'Z'
+        StashWeight = 10000000,
+        StashSize = 100
+    },
+    ['MediumStorageSix'] = { -- Entrance Stash | Key Deposit Box Prop
+        Coords = vector3(-299.75, -1296.68, 31.25), -- Target's Coorindates
+        Length = 3, -- Target's Length
+        Width = 1, -- Target's Width
+        Heading = 270, -- Target's Heading
+        minZ = 30.25, -- Minimum Target's 'Z'
+        maxZ = 32.85, -- Maximum Target's 'Z'
+        StashWeight = 5000000,
+        StashSize = 50
+    },
+    ['LargeStorageOne'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-317.56, -1318.73, 31.26), -- Target's Coorindates
+        Length = 1.8, -- Target's Length
+        Width = 1.8, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 33.06, -- Maximum Target's 'Z'
+        StashWeight = 25000000,
+        StashSize = 250
+    },
+    ['LargeStorageTwo'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-322.23, -1318.89, 31.26), -- Target's Coorindates
+        Length = 2, -- Target's Length
+        Width = 2, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 32.46, -- Maximum Target's 'Z'
+        StashWeight = 25000000,
+        StashSize = 250
+    },
+    ['LargeStorageThree'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-322.41, -1312.23, 31.26), -- Target's Coorindates
+        Length = 2, -- Target's Length
+        Width = 2, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 33.06, -- Maximum Target's 'Z'
+        StashWeight = 25000000,
+        StashSize = 250
+    },
+    ['LargeStorageFour'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-322.5, -1310.09, 31.26), -- Target's Coorindates
+        Length = 2, -- Target's Length
+        Width = 2, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 33.06, -- Maximum Target's 'Z'
+        StashWeight = 25000000,
+        StashSize = 250
+    },
+    ['LargeStorageFive'] = { -- Storage Room Crate | Hidden Room
+        Coords = vector3(-317.29, -1310.23, 31.26), -- Target's Coorindates
+        Length = 2, -- Target's Length
+        Width = 2, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 32.86, -- Maximum Target's 'Z'
+        StashWeight = 25000000,
+        StashSize = 250
+    },
+    ['LargeStorageSix'] = { -- Stack of Weapon Crates | Hidden Room
+        Coords = vector3(-318.73, -1302.28, 31.26), -- Target's Coorindates
+        Length = 2.2, -- Target's Length
+        Width = 1.8, -- Target's Width
+        Heading = 0, -- Target's Heading
+        minZ = 30.26, -- Minimum Target's 'Z'
+        maxZ = 32.46, -- Maximum Target's 'Z'
         StashWeight = 25000000,
         StashSize = 250
     }

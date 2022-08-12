@@ -208,7 +208,7 @@ end)
 
 RegisterNetEvent("cr-postop:client:OpenManagementClothing")
 AddEventHandler("cr-postop:client:OpenManagementClothing", function()
-    if PlayerJob.name == Config.PostOP.System.JobName and PlayerJob.onduty and PlayerJob.grade.level == Config.PostOP.System.GradeLevelRequirement then
+    if PlayerJob.name == Config.PostOP.System.JobName and PlayerJob.onduty and PlayerJob.grade.level >= Config.PostOP.System.GradeLevelRequirement then
         if Config.Framework.Clothing == 'fivem-appearance' then
             TriggerEvent('fivem-appearance:client:OpenClothingRoom')
         elseif Config.Framework.Clothing == 'qb' then
@@ -232,31 +232,11 @@ AddEventHandler("cr-postop:client:OpenRoomClothing", function()
     end
 end)
 
-RegisterNetEvent("cr-postop:client:OpenMiniStash")
-AddEventHandler("cr-postop:client:OpenMiniStash", function()
-    if PlayerJob.name == Config.PostOP.System.JobName and PlayerJob.onduty and PlayerJob.grade.level == Config.PostOP.System.GradeLevelRequirement then
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", "PostOPStash"..Config.Stashes.MiniStash.StashName, { maxweight = Config.Stashes.MiniStash.StashWeight, slots = Config.Stashes.MiniStash.StashSize })
-        TriggerEvent("inventory:client:SetCurrentStash", "PostOPStash"..Config.Stashes.MiniStash.StashName)
-    else
-        ConstantDevelopmentPostOPNotifications(3, "You don\'t seem to be allowed to Open this Stash...", Config.PostOP.System.NotificationTitle)
-    end
-end)
-
-RegisterNetEvent("cr-postop:client:OpenMediumStash")
-AddEventHandler("cr-postop:client:OpenMediumStash", function()
-    if PlayerJob.name == Config.PostOP.System.JobName and PlayerJob.onduty and PlayerJob.grade.level == Config.PostOP.System.GradeLevelRequirement then
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", "PostOPStash"..Config.Stashes.MediumStash.StashName, { maxweight = Config.Stashes.MediumStash.StashWeight, slots = Config.Stashes.MediumStash.StashSize })
-        TriggerEvent("inventory:client:SetCurrentStash", "PostOPStash"..Config.Stashes.MediumStash.StashName)
-    else
-        ConstantDevelopmentPostOPNotifications(3, "You don\'t seem to be allowed to Open this Stash...", Config.PostOP.System.NotificationTitle)
-    end
-end)
-
-RegisterNetEvent("cr-postop:client:OpenLargeStash")
-AddEventHandler("cr-postop:client:OpenLargeStash", function()
-    if PlayerJob.name == Config.PostOP.System.JobName and PlayerJob.onduty and PlayerJob.grade.level == Config.PostOP.System.GradeLevelRequirement then
-        TriggerServerEvent("inventory:server:OpenInventory", "stash", "PostOPStash"..Config.Stashes.LargeStash.StashName, { maxweight = Config.Stashes.LargeStash.StashWeight, slots = Config.Stashes.LargeStash.StashSize })
-        TriggerEvent("inventory:client:SetCurrentStash", "PostOPStash"..Config.Stashes.LargeStash.StashName)
+RegisterNetEvent("cr-postop:client:OpenStash")
+AddEventHandler("cr-postop:client:OpenStash", function(StashName, StashWeight, StashSize)
+    if PlayerJob.name == Config.PostOP.System.JobName and PlayerJob.onduty and PlayerJob.grade.level >= Config.PostOP.System.GradeLevelRequirement then
+        TriggerServerEvent("inventory:server:OpenInventory", "stash", StashName, { maxweight = StashWeight, slots = StashSize })
+        TriggerEvent("inventory:client:SetCurrentStash", StashName)
     else
         ConstantDevelopmentPostOPNotifications(3, "You don\'t seem to be allowed to Open this Stash...", Config.PostOP.System.NotificationTitle)
     end
@@ -438,100 +418,27 @@ Citizen.CreateThread(function()
         distance = 2
     })
 
-    exports['qb-target']:AddBoxZone('PostOPHiddenWeaponRoomSafe', Config.PostOP.Targets.Stashes.HiddenSafe.Coords,  Config.PostOP.Targets.Stashes.HiddenSafe.Length, Config.PostOP.Targets.Stashes.HiddenSafe.Width, {
-        name = 'PostOPHiddenWeaponRoomSafe',
-        heading = Config.PostOP.Targets.Stashes.HiddenSafe.Heading,
-        debugPoly = Config.Framework.Debug,
-        minZ = Config.PostOP.Targets.Stashes.HiddenSafe.minZ,
-        maxZ = Config.PostOP.Targets.Stashes.HiddenSafe.maxZ,
-    }, {
-        options = {
-            {
-                type = 'client',
-                event = 'cr-postop:client:OpenMiniStash',
-                icon = "fas fa-box-open",
-                label = "Open Stash",
-                job = Config.PostOP.System.JobName
+    for k, v in pairs(Config.StashSpots) do
+        exports['qb-target']:AddBoxZone('MiniStash'..k, v.Coords,  v.Length, v.Width, {
+            name = 'MiniStash'..k,
+            heading = v.Heading,
+            debugPoly = Config.Framework.Debug,
+            minZ = v.minZ,
+            maxZ = v.maxZ,
+        }, {
+            options = {
+                {
+                    icon = "fas fa-box-open",
+                    label = "Open Stash",
+                    job = Config.PostOP.System.JobName,
+                    action = function()
+                        TriggerEvent('cr-postop:client:OpenStash', k, v.StashWeight, v.StashSize)
+                    end
+                },
             },
-        },
-        distance = 2
-    })
-
-    exports['qb-target']:AddBoxZone('PostOPHiddenWeaponRoomCrate', Config.PostOP.Targets.Stashes.WeaponCrate.Coords,  Config.PostOP.Targets.Stashes.WeaponCrate.Length, Config.PostOP.Targets.Stashes.WeaponCrate.Width, {
-        name = 'PostOPHiddenWeaponRoomCrate',
-        heading = Config.PostOP.Targets.Stashes.WeaponCrate.Heading,
-        debugPoly = Config.Framework.Debug,
-        minZ = Config.PostOP.Targets.Stashes.WeaponCrate.minZ,
-        maxZ = Config.PostOP.Targets.Stashes.WeaponCrate.maxZ,
-    }, {
-        options = {
-            {
-                type = 'client',
-                event = 'cr-postop:client:OpenMiniStash',
-                icon = "fas fa-box-open",
-                label = "Open Stash",
-                job = Config.PostOP.System.JobName
-            },
-        },
-        distance = 2
-    })
-
-    exports['qb-target']:AddBoxZone('PostOPManagementRoomStash', Config.PostOP.Targets.Stashes.ManagementRoom.Coords,  Config.PostOP.Targets.Stashes.ManagementRoom.Length, Config.PostOP.Targets.Stashes.ManagementRoom.Width, {
-        name = 'PostOPManagementRoomStash',
-        heading = Config.PostOP.Targets.Stashes.ManagementRoom.Heading,
-        debugPoly = Config.Framework.Debug,
-        minZ = Config.PostOP.Targets.Stashes.ManagementRoom.minZ,
-        maxZ = Config.PostOP.Targets.Stashes.ManagementRoom.maxZ,
-    }, {
-        options = {
-            {
-                type = 'client',
-                event = 'cr-postop:client:OpenMediumStash',
-                icon = "fas fa-box-open",
-                label = "Open Stash",
-                job = Config.PostOP.System.JobName
-            },
-        },
-        distance = 2
-    })
-
-    exports['qb-target']:AddBoxZone('PostOPHiddenMeetingRoomCloset', Config.PostOP.Targets.Stashes.MeetingCloset.Coords,  Config.PostOP.Targets.Stashes.MeetingCloset.Length, Config.PostOP.Targets.Stashes.MeetingCloset.Width, {
-        name = 'PostOPHiddenMeetingRoomCloset',
-        heading = Config.PostOP.Targets.Stashes.MeetingCloset.Heading,
-        debugPoly = Config.Framework.Debug,
-        minZ = Config.PostOP.Targets.Stashes.MeetingCloset.minZ,
-        maxZ = Config.PostOP.Targets.Stashes.MeetingCloset.maxZ,
-    }, {
-        options = {
-            {
-                type = 'client',
-                event = 'cr-postop:client:OpenMediumStash',
-                icon = "fas fa-box-open",
-                label = "Open Stash",
-                job = Config.PostOP.System.JobName
-            },
-        },
-        distance = 2
-    })
-
-    exports['qb-target']:AddBoxZone('PostOPHiddenWeaponRoomCrates', Config.PostOP.Targets.Stashes.WeaponCrates.Coords,  Config.PostOP.Targets.Stashes.WeaponCrates.Length, Config.PostOP.Targets.Stashes.WeaponCrates.Width, {
-        name = 'PostOPHiddenWeaponRoomCrates',
-        heading = Config.PostOP.Targets.Stashes.WeaponCrates.Heading,
-        debugPoly = Config.Framework.Debug,
-        minZ = Config.PostOP.Targets.Stashes.WeaponCrates.minZ,
-        maxZ = Config.PostOP.Targets.Stashes.WeaponCrates.maxZ,
-    }, {
-        options = {
-            {
-                type = 'client',
-                event = 'cr-postop:client:OpenLargeStash',
-                icon = "fas fa-box-open",
-                label = "Open Stash",
-                job = Config.PostOP.System.JobName
-            },
-        },
-        distance = 2
-    })
+            distance = 2
+        })
+    end
 
     exports['qb-target']:AddBoxZone('PostOPForgery', Config.PostOP.Targets.Forgery.Coords,  Config.PostOP.Targets.Forgery.Length, Config.PostOP.Targets.Forgery.Width, {
         name = 'PostOPForgery',
@@ -607,26 +514,5 @@ Citizen.CreateThread(function()
         },
         distance = 1.5
     })
-
-    for k, v in pairs(Config.PostOP) do
-        exports['qb-target']:AddBoxZone('PostOPHiddenStorageMediumOne', Config.PostOP.Targets.HiddenStorage.MediumStorages.One.Coords,  Config.PostOP.Targets.HiddenStorage.MediumStorages.One.Length, Config.PostOP.Targets.HiddenStorage.MediumStorages.One.Width, {
-            name = 'PostOPHiddenStorageMediumOne',
-            heading = Config.PostOP.Targets.HiddenStorage.MediumStorages.One.Heading,
-            debugPoly = Config.Framework.Debug,
-            minZ = Config.PostOP.Targets.HiddenStorage.MediumStorages.One.minZ,
-            maxZ = Config.PostOP.Targets.HiddenStorage.MediumStorages.One.maxZ,
-        }, {
-            options = {
-                {
-                    type = 'client',
-                    event = 'cr-postop:client:EventName',
-                    icon = "fas fa-box-alt",
-                    label = "Open Storage",
-                    job = Config.PostOP.System.JobName
-                },
-            },
-            distance = 1.5
-        })
-    end
 
 end)
