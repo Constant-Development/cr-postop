@@ -19,7 +19,7 @@ To further add onto that, this Resource currently contains the following:
  - Hidden Room Box Movement Factor
  - Intricated Forgery Table
  - Intricated Money Table
- - 'Basic' Stash System
+ - Intricated Stash System
  - PostOP MLO Doorlocks
  - External Sounds and Images
 
