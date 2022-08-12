@@ -124,12 +124,12 @@ end
 
 local function CreateProp(propCoords, propModel)
 	local coords = propCoords
-	PropModel = propModel
+	local PropModel = propModel
 	RequestModel(PropModel)
 	while not HasModelLoaded(PropModel) do
 		Wait(3)
 	end
-	PropObject = CreateObject(PropModel, coords.x, coords.y, coords.z - 1, true, true)
+	local PropObject = CreateObject(PropModel, coords.x, coords.y, coords.z - 1, true, true)
 	PlaceObjectOnGroundProperly(PropObject)
     SetEntityHeading(PropObject, coords.w)
 	SetEntityInvincible(PropObject, true)
