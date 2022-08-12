@@ -244,7 +244,7 @@ end)
 
 RegisterNetEvent("cr-postop:client:MoveHiddenRoomBox")
 AddEventHandler("cr-postop:client:MoveHiddenRoomBox", function()
-    if PlayerJob.name == Config.PostOP.System.JobName and PlayerJob.isboss or PlayerJob.name == Config.PostOP.System.PoliceJobName and PlayerJob.grade.level == Config.PostOP.PoliceGradeLevelHiddenFactorsMovement then
+    if PlayerJob.name == Config.PostOP.System.JobName and PlayerJob.isboss or PlayerJob.name == Config.PostOP.System.PoliceJobName then
         if HiddenRoomBoxMoved then
             if Config.Framework.Doorlocks == 'nui' then
                 TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', true, false, false, true)
@@ -252,7 +252,7 @@ AddEventHandler("cr-postop:client:MoveHiddenRoomBox", function()
                 TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', false)
             end
             HiddenRoomBoxMoved = false
-            ConstantDevelopmentPostOPNotifications(2, "You have moved the Hidden Box...", Config.PostOP.System.NotificationTitle)
+            ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
         else
             if Config.Framework.Doorlocks == 'nui' then
                 TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', false, false, false, true)
@@ -260,10 +260,136 @@ AddEventHandler("cr-postop:client:MoveHiddenRoomBox", function()
                 TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', true)
             end
             HiddenRoomBoxMoved = true
-            ConstantDevelopmentPostOPNotifications(2, "You have moved the Hidden Box...", Config.PostOP.System.NotificationTitle)
+            ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+        end
+    elseif PlayerJob.grade.level == Config.PostOP.PoliceGradeLevelHiddenFactorsMovement then
+        if HiddenRoomBoxMoved then
+            if Config.Framework.Minigame == 'ps-ui' then
+                exports['ps-ui']:Circle(function(success)
+                    if success then
+                        if Config.Framework.Doorlocks == 'nui' then
+                            TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', true, false, false, true)
+                        elseif Config.Framework.Doorlocks == 'qb' then
+                            TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', false)
+                        end
+                        HiddenRoomBoxMoved = false
+                        ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+                    else
+                        ConstantDevelopmentPostOPNotifications(3, "You failed to Move the Box...", Config.PostOP.System.NotificationTitle)
+                    end
+                end, math.random(6, 10), math.random(2, 6)) -- NumberOfCircles, MS
+            elseif Config.Framework.Minigame == 'qb-lock' then
+                local circles = math.random(6, 10)
+                local seconds = math.random(2, 6)
+                local success = exports['qb-lock']:StartLockPickCircle(circles, seconds)
+                if success then
+                    if Config.Framework.Doorlocks == 'nui' then
+                        TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', false, false, false, true)
+                    elseif Config.Framework.Doorlocks == 'qb' then
+                        TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', true)
+                    end
+                    HiddenRoomBoxMoved = true
+                    ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+                else
+                    ConstantDevelopmentPostOPNotifications(3, "You failed to Move the Box...", Config.PostOP.System.NotificationTitle)
+                end
+            end
+        else
+            if Config.Framework.Minigame == 'ps-ui' then
+                exports['ps-ui']:Circle(function(success)
+                    if success then
+                        if Config.Framework.Doorlocks == 'nui' then
+                            TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', false, false, false, true)
+                        elseif Config.Framework.Doorlocks == 'qb' then
+                            TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', true)
+                        end
+                        HiddenRoomBoxMoved = true
+                        ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+                    else
+                        ConstantDevelopmentPostOPNotifications(3, "You failed to Move the Box...", Config.PostOP.System.NotificationTitle)
+                    end
+                end, math.random(6, 10), math.random(2, 6)) -- NumberOfCircles, MS
+            elseif Config.Framework.Minigame == 'qb-lock' then
+                local circles = math.random(6, 10)
+                local seconds = math.random(2, 6)
+                local success = exports['qb-lock']:StartLockPickCircle(circles, seconds)
+                if success then
+                    if Config.Framework.Doorlocks == 'nui' then
+                        TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', false, false, false, true)
+                    elseif Config.Framework.Doorlocks == 'qb' then
+                        TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', true)
+                    end
+                    HiddenRoomBoxMoved = true
+                    ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+                else
+                    ConstantDevelopmentPostOPNotifications(3, "You failed to Move the Box...", Config.PostOP.System.NotificationTitle)
+                end
+            end
         end
     else
-        ConstantDevelopmentPostOPNotifications(3, "You don\'t have the proper 'tools' to move this Box...", Config.PostOP.System.NotificationTitle)
+        if HiddenRoomBoxMoved then
+            if Config.Framework.Minigame == 'ps-ui' then
+                exports['ps-ui']:Circle(function(success)
+                    if success then
+                        if Config.Framework.Doorlocks == 'nui' then
+                            TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', true, false, false, true)
+                        elseif Config.Framework.Doorlocks == 'qb' then
+                            TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', false)
+                        end
+                        HiddenRoomBoxMoved = false
+                        ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+                    else
+                        ConstantDevelopmentPostOPNotifications(3, "You failed to Move the Box...", Config.PostOP.System.NotificationTitle)
+                    end
+                end, math.random(8, 12), math.random(1, 5)) -- NumberOfCircles, MS
+            elseif Config.Framework.Minigame == 'qb-lock' then
+                local circles = math.random(8, 12)
+                local seconds = math.random(1, 5)
+                local success = exports['qb-lock']:StartLockPickCircle(circles, seconds)
+                if success then
+                    if Config.Framework.Doorlocks == 'nui' then
+                        TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', true, false, false, true)
+                    elseif Config.Framework.Doorlocks == 'qb' then
+                        TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', false)
+                    end
+                    HiddenRoomBoxMoved = false
+                    ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+                else
+                    ConstantDevelopmentPostOPNotifications(3, "You failed to Move the Box...", Config.PostOP.System.NotificationTitle)
+                end
+            end
+        else
+            if Config.Framework.Minigame == 'ps-ui' then
+                exports['ps-ui']:Circle(function(success)
+                    if success then
+                        if Config.Framework.Doorlocks == 'nui' then
+                            TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', false, false, false, true)
+                        elseif Config.Framework.Doorlocks == 'qb' then
+                            TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', true)
+                        end
+                        HiddenRoomBoxMoved = true
+                        ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+                    else
+                        ConstantDevelopmentPostOPNotifications(3, "You failed to Move the Box...", Config.PostOP.System.NotificationTitle)
+                    end
+                end, math.random(8, 12), math.random(1, 5)) -- NumberOfCircles, MS
+            elseif Config.Framework.Minigame == 'qb-lock' then
+                local circles = math.random(8, 12)
+                local seconds = math.random(1, 5)
+                local success = exports['qb-lock']:StartLockPickCircle(circles, seconds)
+                if success then
+                    if Config.Framework.Doorlocks == 'nui' then
+                        TriggerServerEvent('nui_doorlock:server:updateState', 'PostOPHiddenDoor', true, false, false, true)
+                    elseif Config.Framework.Doorlocks == 'qb' then
+                        TriggerServerEvent('qb-doorlock:server:updateState', 'PostOPHiddenDoor', false)
+                    end
+                    HiddenRoomBoxMoved = false
+                    ConstantDevelopmentPostOPNotifications(2, "You have moved the Box...", Config.PostOP.System.NotificationTitle)
+                else
+                    ConstantDevelopmentPostOPNotifications(3, "You failed to Move the Box...", Config.PostOP.System.NotificationTitle)
+                end
+            end
+        end
     end
 end)
 

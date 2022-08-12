@@ -53,6 +53,11 @@ To further add onto that, this Resource currently contains the following:
  - [qb-clothing](https://github.com/qbcore-framework/qb-clothing)
  - [fivem-appearance](https://github.com/iLLeniumStudios/fivem-appearance)
 
+### Optional Minigame:
+
+ - [ps-ui](https://github.com/Project-Sloth/ps-ui)
+ - [qb-lock](https://github.com/Nathan-FiveM/qb-lock)
+
 ### Optional Forgery Table:
 
 - [cr-forgery](https://constant-development.tebex.io/package/5066459)
